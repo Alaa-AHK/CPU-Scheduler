@@ -12,4 +12,4 @@ class FCFSScheduler(Scheduler):
             return None
 
         ready_processes.sort(key=lambda process: (process.get_arrival_time(), process.get_pid()))
-        return ready_processes
+        return ready_processes[0]
