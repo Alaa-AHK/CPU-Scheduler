@@ -6,8 +6,10 @@ class FCFSScheduler(Scheduler):
         super().__init__("First-Come, First-Served (FCFS)")
 
     def get_next_process(self, current_time) -> Optional[Process]:
-        ready_processes = self.get_arrived_processes(current_time)
+        if self.current_process:
+            return self.current_process
 
+        ready_processes = self.get_arrived_processes(current_time)
         if not ready_processes:
             return None
 
