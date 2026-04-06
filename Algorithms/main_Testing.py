@@ -1,8 +1,15 @@
-from process import Process
-from round_robin import RoundRobin
-from PNPSJF import PriorityNonPreemptive
-from PPSJF import PriorityPreemptive
-from simulation import Simulation
+import os
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
+from Logic.process import Process
+from Algorithms.round_robin import RoundRobin
+from Algorithms.PNPSJF import PriorityNonPreemptive
+from Algorithms.PPSJF import PriorityPreemptive
+from Logic.simulation import Simulation
 
 
 def run_test(scheduler, processes, live=False):

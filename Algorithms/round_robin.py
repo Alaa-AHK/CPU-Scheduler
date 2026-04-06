@@ -1,8 +1,7 @@
-from scheduler import Scheduler
-from process import Process
+from Logic.scheduler import Scheduler
+from Logic.process import Process
 from typing import Optional
 from collections import deque
-
 
 class RoundRobin(Scheduler):
 
