@@ -1,5 +1,5 @@
-from Core import Execution
 from typing import Optional
+from Logic.execution import Execution
 
 
 class Process:

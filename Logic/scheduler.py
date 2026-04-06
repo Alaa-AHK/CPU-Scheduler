@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
-from Core import Process  #src.models.process 
+from Logic.process import Process
 
 
 # Every scheduling algorithm in this project inherits from this class.
@@ -83,7 +83,7 @@ class Scheduler(ABC):
         no_of_processes = len(self.processes)
         return sum_turnaround_time / no_of_processes
     
-    def get_average_response_time(self):
+    def get_average_response_time(self): # bug
             # Response time is only meaningful for processes that have already started,
             # so we filter to those first before calculating the average.
             responded = [p for p in self.processes if p.get_response_time() is not None]
@@ -135,11 +135,11 @@ class Scheduler(ABC):
         # It asks the algorithm who goes next, runs that process for one time unit,
         # checks if it finished, then advances the clock.
 
-        print("getting next process")
+        # print("getting next process")
         next_process = self.get_next_process(self.current_time)
 
         time_used = self.time_slice  # Default time used — may be less if process finishes early
-        print("inside tick")
+        # print("inside tick")
 
         if next_process:
             self.current_process = next_process

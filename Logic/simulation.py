@@ -1,6 +1,6 @@
 import time
-from Core import Process  #src.models.process
-from Core import Scheduler    # src.core.scheduler 
+from Logic.process import Process  #src.models.process
+from Logic.scheduler import Scheduler    # src.core.scheduler 
 import threading
 
 # Simulation is the top-level controller that the GUI talks to.
@@ -85,20 +85,20 @@ class Simulation:
         # Setting useDelay=False skips the sleep entirely, giving instant results.
         # That's the "At-Once" mode — same logic, just no waiting between ticks.
 
-        print("Starting tick loop")
+        # print("Starting tick loop")
         while (self.running) and (not self.scheduler.all_processes_completed()):
-            print("Running Tick...")
+            # print("Running Tick...")
             current_process = self.scheduler.run_tick()
 
             if useDelay:
                 # Wait one real second (or however long the delay is set to) before moving to the next tick — this is what creates the live feel.
                 time.sleep(self.delay)
 
-            print("Yielding current process")
+            # print("Yielding current process")
             # Hand the current state back to the GUI so it can update the visuals.
             # Execution will resume here on the next iteration.
             yield current_process
-            print("After yield")
+            # print("After yield")
 
         # Loop ended — either the user stopped it or all processes finished.
         self.running = False
