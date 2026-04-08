@@ -7,8 +7,8 @@ class SJFScheduler(Scheduler):
         super().__init__("Shortest Job First (Non-Preemptive)")
 
     def get_next_process(self, current_time) -> Optional[Process]:
-        if not self.current_process:
-            return None
+        if self.current_process and not self.current_process.is_completed():
+            return self.current_process
 
         ready_processes = self.get_arrived_processes(current_time)
         if not ready_processes:
