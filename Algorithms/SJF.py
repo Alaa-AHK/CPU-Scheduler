@@ -1,5 +1,6 @@
 from typing import List, Optional
-from Algorithms import Scheduler, Process
+from Scheduler import Scheduler
+from Process import Process
 
 class SJFScheduler(Scheduler):
     def __init__(self):
