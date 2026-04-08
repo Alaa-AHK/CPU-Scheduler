@@ -60,62 +60,52 @@ def run_test(scheduler, processes, live=False):
     print(f"  Avg Turnaround Time: {avg_tat:.2f}")
     print()
 
+def get_test_cases():
+    test_1 = [
+        Process(pid=1, name="P1", arrival_time=0, burst_time=8, priority=3),
+        Process(pid=2, name="P2", arrival_time=1, burst_time=4, priority=2),
+        Process(pid=3, name="P3", arrival_time=2, burst_time=2, priority=1),
+        Process(pid=4, name="P4", arrival_time=3, burst_time=4, priority=4),
+    ]
 
-def test_round_robin(live=False):
-    scheduler = RoundRobin(quantum=2)
-    processes = [
+    test_2 = [
         Process(pid=1, name="P1", arrival_time=0, burst_time=4),
         Process(pid=2, name="P2", arrival_time=1, burst_time=3),
         Process(pid=3, name="P3", arrival_time=6, burst_time=2),
         Process(pid=4, name="P4", arrival_time=3, burst_time=3),
     ]
-    run_test(scheduler, processes, live)
 
+    return test_1
+
+# Define Tests
+def test_round_robin(live=False):
+    scheduler = RoundRobin(quantum=2)
+    processes = get_test_cases()
+    run_test(scheduler, processes, live)
 
 def test_priority_np(live=False):
     scheduler = PriorityNonPreemptive()
-    processes = [
-        Process(pid=1, name="P1", arrival_time=0, burst_time=3, priority=3),
-        Process(pid=2, name="P2", arrival_time=1, burst_time=4, priority=2),
-        Process(pid=3, name="P3", arrival_time=2, burst_time=2, priority=1),
-    ]
+    processes = get_test_cases()
     run_test(scheduler, processes, live)
-
 
 def test_priority_p(live=False):
     scheduler = PriorityPreemptive()
-    processes = [
-        Process(pid=1, name="P1", arrival_time=0, burst_time=3, priority=3),
-        Process(pid=2, name="P2", arrival_time=1, burst_time=4, priority=2),
-        Process(pid=3, name="P3", arrival_time=2, burst_time=2, priority=1),
-    ]
+    processes = get_test_cases()
     run_test(scheduler, processes, live)
 
 def test_FCFS(live=False):
     scheduler = FCFSScheduler()
-    processes = [
-        Process(pid=1, name="P1", arrival_time=0, burst_time=3, priority=3),
-        Process(pid=2, name="P2", arrival_time=1, burst_time=4, priority=2),
-        Process(pid=3, name="P3", arrival_time=2, burst_time=2, priority=1),
-    ]
+    processes = get_test_cases()
     run_test(scheduler, processes, live)
 
 def test_SJF(live=False):
     scheduler = SJFScheduler()
-    processes = [
-        Process(pid=1, name="P1", arrival_time=0, burst_time=3, priority=3),
-        Process(pid=2, name="P2", arrival_time=1, burst_time=4, priority=2),
-        Process(pid=3, name="P3", arrival_time=2, burst_time=2, priority=1),
-    ]
+    processes = get_test_cases()
     run_test(scheduler, processes, live)
 
 def test_SRTF(live=False):
     scheduler = SRTFScheduler()
-    processes = [
-        Process(pid=1, name="P1", arrival_time=0, burst_time=3, priority=3),
-        Process(pid=2, name="P2", arrival_time=1, burst_time=4, priority=2),
-        Process(pid=3, name="P3", arrival_time=2, burst_time=2, priority=1),
-    ]
+    processes = get_test_cases()
     run_test(scheduler, processes, live)
 
 def menu():
@@ -134,7 +124,6 @@ def menu():
         print("=" * 50)
 
         choice = input("  Choose algorithm (0-7): ").strip()
-
         if choice == "0":
             print("  Goodbye! 👋")
             break
