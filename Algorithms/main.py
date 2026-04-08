@@ -1,9 +1,8 @@
-from process import Process
-from scheduler import Scheduler
-from execution import Execution
-from simulation import Simulation
+from Process import Process
+from Scheduler import Scheduler
+from Execution import Execution
+#import Simulation
 from typing import Optional
-
 
 # ========================================
 # A Dummy Scheduler Just For Testing
@@ -19,7 +18,6 @@ class DummyScheduler(Scheduler):
             return None
         # Just pick the first arrived process
         return arrived[0]
-
 
 # ========================================
 # Test 1: Process Class
@@ -55,7 +53,6 @@ def test_process():
 
     print()
 
-
 # ========================================
 # Test 2: Execution Class
 # ========================================
@@ -70,7 +67,6 @@ def test_execution():
     print(f"Duration: {e.duration()}")
 
     print()
-
 
 # ========================================
 # Test 3: Scheduler (using DummyScheduler)
@@ -147,7 +143,6 @@ def test_simulation():
     print(f"Avg Turnaround Time: {avg_tat:.2f}")
 
     print()
-
 
 # ========================================
 # Run All Tests
