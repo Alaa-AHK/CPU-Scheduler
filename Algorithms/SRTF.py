@@ -1,4 +1,5 @@
-from Algorithms import Scheduler, Process
+from Logic.scheduler import Scheduler
+from Logic.process import Process
 from typing import Optional
 
 class SRTFScheduler(Scheduler):
