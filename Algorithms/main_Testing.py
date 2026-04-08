@@ -9,6 +9,9 @@ from Logic.process import Process
 from Algorithms.round_robin import RoundRobin
 from Algorithms.PNPSJF import PriorityNonPreemptive
 from Algorithms.PPSJF import PriorityPreemptive
+from Algorithms.SJF import SJFScheduler
+from Algorithms.SRTF import SRTFScheduler
+from Algorithms.FCFS import FCFSScheduler
 from Logic.simulation import Simulation
 
 
@@ -88,6 +91,32 @@ def test_priority_p(live=False):
     ]
     run_test(scheduler, processes, live)
 
+def test_FCFS(live=False):
+    scheduler = FCFSScheduler()
+    processes = [
+        Process(pid=1, name="P1", arrival_time=0, burst_time=3, priority=3),
+        Process(pid=2, name="P2", arrival_time=1, burst_time=4, priority=2),
+        Process(pid=3, name="P3", arrival_time=2, burst_time=2, priority=1),
+    ]
+    run_test(scheduler, processes, live)
+
+def test_SJF(live=False):
+    scheduler = SJFScheduler()
+    processes = [
+        Process(pid=1, name="P1", arrival_time=0, burst_time=3, priority=3),
+        Process(pid=2, name="P2", arrival_time=1, burst_time=4, priority=2),
+        Process(pid=3, name="P3", arrival_time=2, burst_time=2, priority=1),
+    ]
+    run_test(scheduler, processes, live)
+
+def test_SRTF(live=False):
+    scheduler = SRTFScheduler()
+    processes = [
+        Process(pid=1, name="P1", arrival_time=0, burst_time=3, priority=3),
+        Process(pid=2, name="P2", arrival_time=1, burst_time=4, priority=2),
+        Process(pid=3, name="P3", arrival_time=2, burst_time=2, priority=1),
+    ]
+    run_test(scheduler, processes, live)
 
 def menu():
     while True:
@@ -97,7 +126,10 @@ def menu():
         print("  1. Round Robin")
         print("  2. Priority Non-Preemptive")
         print("  3. Priority Preemptive")
-        print("  4. Run All")
+        print("  4. First Come First Served")
+        print("  5. Shortest Job First")
+        print("  6. Preemptive Shortest Job First (SRTF)")
+        print("  7. Run All")
         print("  0. Exit")
         print("=" * 50)
 
@@ -115,6 +147,12 @@ def menu():
         elif choice == "2":
             test_priority_np(live)
         elif choice == "3":
+            test_priority_p(live)
+        elif choice == "4":
+            test_priority_p(live)        
+        elif choice == "5":
+            test_priority_p(live)        
+        elif choice == "6":
             test_priority_p(live)
         elif choice == "4":
             test_round_robin(live)
