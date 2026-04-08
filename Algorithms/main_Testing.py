@@ -14,6 +14,25 @@ from Algorithms.SRTF import SRTFScheduler
 from Algorithms.FCFS import FCFSScheduler
 from Logic.simulation import Simulation
 
+def print_processes(processes):
+    print(f"\n  {'Name':<6} {'Arrival':<10} {'Burst':<8} {'Priority':<10}")
+    print(f"  {'-'*34}")
+    for p in processes:
+        pri = p.get_priority() if p.get_priority() is not None else "N/A"
+        print(f"  {p.get_name():<6} {p.get_arrival_time():<10} "
+              f"{p.get_burst_time():<8} {str(pri):<10}")
+
+def print_results(scheduler):
+    print(f"\n  {'Name':<6} {'Waiting':<10} {'Turnaround':<12}")
+    print(f"  {'-'*28}")
+    for p in scheduler.get_processes():
+        print(f"  {p.get_name():<6} {p.get_waiting_time():<10} "
+              f"{p.get_turnaround_time():<12}")
+
+    avg_wt, avg_tat = scheduler.calculate_metrics()
+    print(f"\n  Avg Waiting Time:    {avg_wt:.2f}")
+    print(f"  Avg Turnaround Time: {avg_tat:.2f}")
+    print()
 
 def run_test(scheduler, processes, live=False):
     print("=" * 50)
@@ -27,16 +46,11 @@ def run_test(scheduler, processes, live=False):
         simulation.add_process(p)
 
     # Print processes
-    print(f"\n  {'Name':<6} {'Arrival':<10} {'Burst':<8} {'Priority':<10}")
-    print(f"  {'-'*34}")
-    for p in scheduler.get_processes():
-        pri = p.get_priority() if p.get_priority() is not None else "N/A"
-        print(f"  {p.get_name():<6} {p.get_arrival_time():<10} "
-              f"{p.get_burst_time():<8} {str(pri):<10}")
+    processes = scheduler.get_processes()
+    print_processes(processes)
 
     # Run
     simulation.start()
-
     print(f"\n  {'Time':<6} {'Process':<10} {'Remaining':<12}")
     print(f"  {'-'*28}")
 
@@ -49,16 +63,8 @@ def run_test(scheduler, processes, live=False):
             print(f"  {time:<6} {'IDLE':<10}")
 
     # Results
-    print(f"\n  {'Name':<6} {'Waiting':<10} {'Turnaround':<12}")
-    print(f"  {'-'*28}")
-    for p in scheduler.get_processes():
-        print(f"  {p.get_name():<6} {p.get_waiting_time():<10} "
-              f"{p.get_turnaround_time():<12}")
+    print_results(scheduler)
 
-    avg_wt, avg_tat = scheduler.calculate_metrics()
-    print(f"\n  Avg Waiting Time:    {avg_wt:.2f}")
-    print(f"  Avg Turnaround Time: {avg_tat:.2f}")
-    print()
 
 def get_test_cases():
     test_1 = [
