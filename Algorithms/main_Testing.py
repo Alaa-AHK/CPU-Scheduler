@@ -133,7 +133,7 @@ def menu():
         print("  0. Exit")
         print("=" * 50)
 
-        choice = input("  Choose algorithm (0-4): ").strip()
+        choice = input("  Choose algorithm (0-7): ").strip()
 
         if choice == "0":
             print("  Goodbye! 👋")
@@ -149,15 +149,18 @@ def menu():
         elif choice == "3":
             test_priority_p(live)
         elif choice == "4":
-            test_priority_p(live)        
+            test_FCFS(live)        
         elif choice == "5":
-            test_priority_p(live)        
+            test_SJF(live)        
         elif choice == "6":
-            test_priority_p(live)
-        elif choice == "4":
+            test_SRTF(live)
+        elif choice == "7":
             test_round_robin(live)
             test_priority_np(live)
             test_priority_p(live)
+            test_FCFS(live)        
+            test_SJF(live)        
+            test_SRTF(live)
         else:
             print("  Invalid choice! Try again.")
 
