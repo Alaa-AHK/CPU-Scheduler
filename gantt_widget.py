@@ -22,7 +22,7 @@ class GanttCanvas(QWidget):
         self._color_idx = 0
         self._total_time = 0
 
-    def clear(self):
+    def clear(self):              # reset to empty state
         self._slots = []
         self._row_order = []
         self._color_map = {}
@@ -34,9 +34,9 @@ class GanttCanvas(QWidget):
     def add_slot(self, process, start: int, end: int):
         name = process.get_name() if process else None
         if name and name not in self._color_map:
-            self._color_map[name] = COLORS[self._color_idx % len(COLORS)]
+            self._color_map[name] = COLORS[self._color_idx % len(COLORS)] # assign color to the process in order of appearance
             self._color_idx += 1
-        if name and name not in self._row_order:
+        if name and name not in self._row_order:                          # add to row order if not already present
             self._row_order.append(name)
         self._slots.append((name, start, end))
         self._total_time = end
@@ -53,12 +53,6 @@ class GanttCanvas(QWidget):
         p = QPainter(self)
         p.setRenderHint(QPainter.Antialiasing)
         p.fillRect(self.rect(), QColor("#ffffff"))
-
-        if not self._row_order:
-            p.setPen(QColor("#aaaaaa"))
-            p.setFont(QFont("Arial", 10))
-            p.drawText(self.rect(), Qt.AlignCenter, "Run a simulation to see the Gantt chart")
-            return
 
         self._draw_header(p)
         self._draw_rows(p)
@@ -79,19 +73,18 @@ class GanttCanvas(QWidget):
     def _draw_rows(self, p: QPainter):
         for i, name in enumerate(self._row_order):
             y = HEADER_H + i * ROW_H
-            bg = QColor("#fafafa") if i % 2 == 0 else QColor("#f2f2f2")
-            p.fillRect(0, y, self.width(), ROW_H, bg)
+            p.fillRect(0, y, self.width(), ROW_H, QColor("#fafafa"))
 
             # label
             p.fillRect(0, y, LABEL_W, ROW_H, QColor("#f0f0f0"))
-            p.setPen(QPen(QColor("#cccccc"), 0.5))
+            p.setPen(QPen(QColor("#949494"), 0.5))
             p.drawLine(LABEL_W, y, LABEL_W, y + ROW_H)
             p.setPen(QColor("#333333"))
             p.setFont(QFont("Arial", 9))
             p.drawText(8, y, LABEL_W - 10, ROW_H, Qt.AlignVCenter | Qt.AlignLeft, name)
 
         # grid lines
-        p.setPen(QPen(QColor("#e8e8e8"), 0.5))
+        p.setPen(QPen(QColor("#bebebe"), 0.5))
         rows = len(self._row_order)
         for t in range(self._total_time + 1):
             x = LABEL_W + t * CELL_W
