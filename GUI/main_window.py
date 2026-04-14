@@ -32,11 +32,70 @@ class MainWindow(QWidget):
         self.setWindowTitle("CPU Scheduler Simulator")
         self.resize(1050, 750)
         self.setStyleSheet("""
+            QWidget {
+                background-color: #F0F4F8;
+                color: #2C3E50;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
             QLabel {
-                font-size: 14px; letter-spacing: 0.4px;
+                font-size: 14px;
+                font-weight: bold;
+                letter-spacing: 0.5px;
+                color: #2C3E50;
             }
             QPushButton {
-                font-size: 12px; letter-spacing: 0.3px;   
+                background-color: #8DABC4;
+                color: #1A252F;
+                font-size: 13px;
+                font-weight: bold;
+                border-radius: 6px;
+                padding: 8px 16px;
+                border: none;
+            }
+            QPushButton:hover {
+                background-color: #A3BDD3;
+            }
+            QPushButton:pressed {
+                background-color: #799AB5;
+            }
+            QPushButton:disabled {
+                background-color: #BCCCDC;
+                color: #7F8C8D;
+            }
+            QLineEdit, QSpinBox, QComboBox {
+                background-color: #FFFFFF;
+                border: 2px solid #D9E2EC;
+                border-radius: 4px;
+                padding: 4px 8px;
+                font-size: 13px;
+                color: #2C3E50;
+            }
+            QLineEdit:focus, QSpinBox:focus, QComboBox:focus {
+                border: 2px solid #8DABC4;
+            }
+            QComboBox::drop-down {
+                border: none;
+            }
+            QTableWidget {
+                background-color: #FFFFFF;
+                alternate-background-color: #F8FAFC;
+                border: 1px solid #D9E2EC;
+                border-radius: 4px;
+                gridline-color: #E4E7EB;
+                font-size: 13px;
+                color: #2C3E50;
+            }
+            QHeaderView::section {
+                background-color: #E2EAF2;
+                color: #2C3E50;
+                font-weight: bold;
+                padding: 6px;
+                border: 1px solid #C5D4E3;
+            }
+            QTableWidget::item:selected {
+                background-color: #ABC4DA;
+                color: #1A252F;
+            }
         """)
 
         self._process_store: list[dict] = []
@@ -70,26 +129,26 @@ class MainWindow(QWidget):
         self.comboAlgo = QComboBox()
         self.comboAlgo.addItems(ALGOS)
         self.comboAlgo.currentTextChanged.connect(self._on_algo_changed)
-        self.comboAlgo.setMinimumWidth(300)
+        self.comboAlgo.setMinimumWidth(320)
         row1.addWidget(self.comboAlgo)
-        row1.addSpacing(50)
+        row1.addSpacing(120)
 
         self.lblQuantum = QLabel("Quantum:")
         self.spinQuantum = QSpinBox()
         self.spinQuantum.setMinimum(1)
         self.spinQuantum.setMaximum(99)
         self.spinQuantum.setValue(1)
-        self.spinQuantum.setFixedWidth(170)
+        self.spinQuantum.setFixedWidth(120)
         row1.addWidget(self.lblQuantum)
         row1.addWidget(self.spinQuantum)
-        row1.addSpacing(50)
+        row1.addSpacing(10)
 
         self.lblPriority = QLabel("Priority:")
         self.spinPriority = QSpinBox()
         self.spinPriority.setMinimum(1)
         self.spinPriority.setMaximum(99)
         self.spinPriority.setValue(1)
-        self.spinPriority.setFixedWidth(170)
+        self.spinPriority.setFixedWidth(120)
         row1.addWidget(self.lblPriority)
         row1.addWidget(self.spinPriority)
 
@@ -109,9 +168,6 @@ class MainWindow(QWidget):
     #     self.lblSpeed = QLabel("1x")
     #     row1.addWidget(self.lblSpeed)
 
-
-
-
         row1.addStretch()
         self.lblStatus = QLabel("idle")
         row1.addWidget(self.lblStatus)
@@ -126,7 +182,7 @@ class MainWindow(QWidget):
         self.edtName.setPlaceholderText("Process")
         self.edtName.setFixedWidth(120)
         row2.addWidget(self.edtName)
-        row2.addSpacing(50)
+        row2.addSpacing(10)
 
         row2.addWidget(QLabel("Arrival:"))
         self.spinArrival = QSpinBox()
@@ -134,7 +190,7 @@ class MainWindow(QWidget):
         self.spinArrival.setMaximum(9999)
         self.spinArrival.setFixedWidth(80)
         row2.addWidget(self.spinArrival)
-        row2.addSpacing(50)
+        row2.addSpacing(10)
 
         row2.addWidget(QLabel("Burst:"))
         self.spinBurst = QSpinBox()
@@ -143,7 +199,7 @@ class MainWindow(QWidget):
         self.spinBurst.setValue(0)
         self.spinBurst.setFixedWidth(80)
         row2.addWidget(self.spinBurst)
-        row2.addSpacing(80)
+        row2.addSpacing(150)
 
 
         self.btnAdd = QPushButton("Add Process")
@@ -179,9 +235,14 @@ class MainWindow(QWidget):
         self.btnPause.clicked.connect(self._on_pause_resume)
         self.btnReset.clicked.connect(self._on_reset)
 
-        for btn in (self.btnRunLive, self.btnRunOnce, self.btnPause, self.btnReset):
-            row3.addWidget(btn)
+        # Add Run Live and Run At Once to the left, Pause and Reset to the right
+        row3.addWidget(self.btnRunLive)
+        row3.addWidget(self.btnRunOnce)
         row3.addStretch()
+        self.btnPause.setStyleSheet("background-color: #FFF9DB; color: #665c00; border-radius: 6px; padding: 8px 16px; border: none; font-weight: bold;")
+        self.btnReset.setStyleSheet("background-color: #FFE5E5; color: #8B0000; border-radius: 6px; padding: 8px 16px; border: none; font-weight: bold;")
+        row3.addWidget(self.btnPause)
+        row3.addWidget(self.btnReset)
         root.addLayout(row3)
 
         # ── Table on top, Gantt + average info below ───────────────────────────
