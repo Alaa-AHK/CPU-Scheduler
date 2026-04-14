@@ -87,8 +87,16 @@ class Simulation:
 
         # print("Starting tick loop")
         while (self.running) and (not self.scheduler.all_processes_completed()):
+
+            if self.paused:
+                time.sleep(0.05)
+                continue
+
+
             # print("Running Tick...")
             current_process = self.scheduler.run_tick()
+
+
 
             if useDelay:
                 # Wait one real second (or however long the delay is set to) before moving to the next tick — this is what creates the live feel.
