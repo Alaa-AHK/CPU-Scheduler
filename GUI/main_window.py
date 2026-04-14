@@ -111,9 +111,10 @@ class MainWindow(QWidget):
 
 
 
-        # row1.addStretch()
-        # self.lblStatus = QLabel("idle")
-        # row1.addWidget(self.lblStatus)
+
+        row1.addStretch()
+        self.lblStatus = QLabel("idle")
+        row1.addWidget(self.lblStatus)
 
 
         # ── Row 2: process input form ─────────────────────────────────────────
@@ -283,13 +284,17 @@ class MainWindow(QWidget):
 
     def _on_run_live(self):
         if not self._process_store:
-            # self.lblStatus.setText("add processes first")
+
+            self.lblStatus.setText("add processes first")
+
             return
         self._start_sim(live=True)
 
     def _on_run_at_once(self):
         if not self._process_store:
-            # self.lblStatus.setText("add processes first")
+
+            self.lblStatus.setText("add processes first")
+
             return
         self._start_sim(live=False)
 
@@ -337,7 +342,8 @@ class MainWindow(QWidget):
         self._controller = RunController(self)
         self._controller.sig_tick.connect(self._on_tick)
         self._controller.sig_done.connect(self._on_sim_done)
-        # self._controller.sig_status.connect(self.lblStatus.setText)
+
+        self._controller.sig_status.connect(self.lblStatus.setText)
 
         self._sim_running = True
         self._set_controls_running(True)
@@ -368,7 +374,10 @@ class MainWindow(QWidget):
         self.btnAdd.setEnabled(not running)
         self.btnRemove.setEnabled(not running)
         self.btnInject.setEnabled(running)
-        self.btnPause.setEnabled(running)
+
+        #self.btnPause.setEnabled(running)
+
+        self.btnPause.setEnabled(True)
         self.comboAlgo.setEnabled(not running)
         self.spinArrival.setEnabled(not running)
         
