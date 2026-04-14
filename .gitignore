@@ -1,0 +1,70 @@
+# ==========================================
+# 1. PYTHON BYTECODE & IMPORT CACHES
+# Why: Python compiles .py → .pyc for faster imports.
+# These are derived from source and platform-dependent.
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# ==========================================
+# 2. VIRTUAL ENVIRONMENTS
+# Why: Dependencies are environment-specific and reproducible
+# via manifests (requirements.txt, lockfiles, etc.).
+# Keeping them out saves space and avoids hardcoded paths.
+# ==========================================
+.venv/
+venv/
+ENV/
+env/
+
+# ==========================================
+# 3. DISTRIBUTION & BUILD ARTIFACTS
+# Why: Generated during packaging. Never commit build outputs.
+# ==========================================
+build/
+dist/
+*.egg-info/
+*.egg
+*.whl
+.eggs/
+
+# ==========================================
+# 4. TESTING, LINTING & TYPE-CHECKING CACHES
+# Why: Tool-specific caches that regenerate on each run.
+# ==========================================
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyright_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# ==========================================
+# 5. IDE & EDITOR WORKSPACE FILES
+# Why: Personal/editor preferences, not project logic.
+# (Uncomment if your team shares IDE configs)
+# ==========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ==========================================
+# 6. OS, ENV & MISC
+# ==========================================
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.local
+.env.*.local
+
+# ==========================================
+# 7. JUPYTER (if applicable)
+# ==========================================
+.ipynb_checkpoints/

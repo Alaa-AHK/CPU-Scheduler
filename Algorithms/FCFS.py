@@ -1,12 +1,13 @@
 from typing import List, Optional
-from Algorithms import Scheduler, Process
+from Logic.scheduler import Scheduler
+from Logic.process import Process
 
 class FCFSScheduler(Scheduler):
     def __init__(self):
         super().__init__("First-Come, First-Served (FCFS)")
 
     def get_next_process(self, current_time) -> Optional[Process]:
-        if self.current_process:
+        if self.current_process and not self.current_process.is_completed():
             return self.current_process
 
         ready_processes = self.get_arrived_processes(current_time)
