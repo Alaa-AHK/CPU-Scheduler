@@ -1,10 +1,12 @@
-# CPU-Scheduler
+# CPU Scheduler Simulator
+
+![CPU Scheduler Simulator Screenshot](Documentation/images/cpu_scheduler_screenshot.png)
 
 A simulator designed to visualize and analyze various CPU scheduling algorithms. Built with a focus on modularity and real-time interaction, it provides a comprehensive tool for understanding how operating systems manage process execution and resource allocation.
 
 ---
 
-## ✨ Features
+## Features
 
 * **Multiple Scheduling Algorithms**:
     * **FCFS** (First-Come, First-Served)
@@ -16,17 +18,17 @@ A simulator designed to visualize and analyze various CPU scheduling algorithms.
 * **Performance Metrics**: Automatic calculation of Average Waiting Time (**AWT**) and Average Turnaround Time (**ATT**).
 * **Interactive Controls**: Start, pause, resume, or "Run All At Once" for instant results.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 * **Python 3.x**
-* **Pip** (Python package manager)
+* **PyQt5** (GUI library)
 
 ### Installation
 1.  **Clone the repository**:
     ```bash
-    git clone [https://github.com/ashmod/Chronos.git](https://github.com/ashmod/Chronos.git)
-    cd Chronos
+    git clone <https://github.com/Alaa-AHK/CPU-Scheduler>
+    cd CPU_Scheduler
     ```
 2.  **Install dependencies**:
     ```bash
@@ -39,27 +41,46 @@ To launch the simulator:
 python main.py
 ```
 
-## 📁 Project Structure
+## Project Structure
 The project is organized into modular components to ensure clear separation of logic and presentation:
 ```Plaintext
-CPU-Scheduler/
-├── main.py              # Application entry point
-├── build.py             # Script for building the executable
-├── example_processes.csv # Sample data for testing
+CPU_Scheduler/
+├── main.py                  # Application entry point
+├── requirements.txt         # Python dependencies
 └── src/
-    ├── algorithms/      # Core logic for FCFS, SJF, RR, etc.
-    ├── core/            # Simulation engine and scheduler management
-    ├── gui/             # UI components and window layouts
-    ├── models/          # Data structures for Processes
-    ├── resources/       # UI assets and icons
-    └── scenes/          # Application screens (Main Menu, Simulator)
+    ├── Algorithms/          # Core logic for FCFS, SJF, RR, etc.
+    │   ├── FCFS.py
+    │   ├── SJF.py
+    │   ├── SRTF.py
+    │   ├── round_robin.py
+    │   ├── PPSJF.py
+    │   ├── PNPSJF.py
+    │   ├── main_Testing.py
+    ├── Documentation/       #  documentation Report
+    ├── GUI/                 # UI components and window layouts
+    │   ├── main_window.py
+    │   ├── run_controller.py
+    │   └── gantt_widget.py
+    ├── Logic/               # Simulation engine and scheduler management
+    │   ├── execution.py
+    │   ├── process.py
+    │   ├── scheduler.py
+    │   └── simulation.py
 ```
 
-### 📊 How to Use
+### How to Use
 * Select an Algorithm: Choose the desired scheduling strategy from the interface.
 
 * Input Data: Define Process Name, Arrival Time, Burst Time, and Priority.
 
-* Adjust Simulation: Use the speed slider to control the visualizer pace.
-
 * Analyze Results: Review the final table for calculated timing statistics and efficiency metrics.
+ 
+## Team Members
+
+- Arsany Hany Anwar  
+- Andrew Ehab Tharwat  
+- Alaa Abdelhakeem Mahmoud  
+- Rola Ahmed Kassem  
+- Radwa Yasser Ahmed  
+- Youmna Ahmed Farag  
+- Ziad Ahmed Orabi
