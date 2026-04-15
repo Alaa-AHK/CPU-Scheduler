@@ -365,9 +365,19 @@ class MainWindow(QWidget):
         if self.btnPause.text() == "Pause":
             self._controller.pause()
             self.btnPause.setText("Resume")
+            if "Priority" in self.comboAlgo.currentText():
+                self.spinPriority.setEnabled(True)
+                self.lblPriority.setEnabled(True)
+            if "Round Robin" in self.comboAlgo.currentText():
+                self.spinQuantum.setEnabled(True)
+                self.lblQuantum.setEnabled(True)
         else:
             self._controller.resume()
             self.btnPause.setText("Pause")
+            self.spinPriority.setEnabled(False)
+            self.lblPriority.setEnabled(False)
+            self.spinQuantum.setEnabled(False)
+            self.lblQuantum.setEnabled(False)
 
     def _on_reset(self):
         if self._controller:
