@@ -46,25 +46,24 @@ The project is organized into modular components to ensure clear separation of l
 CPU_Scheduler/
 ├── main.py                  # Application entry point
 ├── requirements.txt         # Python dependencies
-└── src/
-    ├── Algorithms/          # Core logic for FCFS, SJF, RR, etc.
-    │   ├── FCFS.py
-    │   ├── SJF.py
-    │   ├── SRTF.py
-    │   ├── round_robin.py
-    │   ├── PPSJF.py
-    │   ├── PNPSJF.py
-    │   ├── main_Testing.py
-    ├── Documentation/       #  documentation Report
-    ├── GUI/                 # UI components and window layouts
-    │   ├── main_window.py
-    │   ├── run_controller.py
-    │   └── gantt_widget.py
-    ├── Logic/               # Simulation engine and scheduler management
-    │   ├── execution.py
-    │   ├── process.py
-    │   ├── scheduler.py
-    │   └── simulation.py
+├── Algorithms/              # Core logic for FCFS, SJF, RR, etc.
+│   ├── FCFS.py
+│   ├── SJF.py
+│   ├── SRTF.py
+│   ├── round_robin.py
+│   ├── PPSJF.py
+│   ├── PNPSJF.py
+│   ├── main_Testing.py
+├── Documentation/           # documentation Report
+├── GUI/                     # UI components and window layouts
+│   ├── main_window.py
+│   ├── run_controller.py
+│   └── gantt_widget.py
+├── Logic/                   # Simulation engine and scheduler management
+│   ├── execution.py
+│   ├── process.py
+│   ├── scheduler.py
+│   └── simulation.py
 ```
 
 ### How to Use
