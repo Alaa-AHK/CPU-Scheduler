@@ -335,6 +335,7 @@ class MainWindow(QWidget):
             "burst":    self.spinBurst.value(),
             "priority": priority,
         }
+        self._process_store.append(data)
         self._add_row_to_proc_table(data, note=" (live)")
         self.edtName.clear()
         self._next_pid += 1
