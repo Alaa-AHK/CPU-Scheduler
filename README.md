@@ -1,6 +1,6 @@
 # CPU Scheduler Simulator
 
-![CPU Scheduler Simulator Screenshot](Documentation/images/Screenshot%202026-04-16%20002259.png)
+![CPU Scheduler Simulator Screenshot](Documentation & exe_drive_link/images/Screenshot%202026-04-16%20002259.png)
 A simulator designed to visualize and analyze various CPU scheduling algorithms. Built with a focus on modularity and real-time interaction, it provides a comprehensive tool for understanding how operating systems manage process execution and resource allocation.
 
 ---
